@@ -8,7 +8,7 @@ A bus booking web app to ease commute to and from Ashesi campus.
 
 # Link to web app
 
-(we-meuve)[htpps://we-meuve.com]
+[we-meuve](htpps://we-meuve.com)
 
 # Authors
 
