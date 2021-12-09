@@ -25,6 +25,7 @@
 </style>
     <form>
         <h1>Swift Go</h1>
+        <br/>
   <!-- 2 column grid layout with text inputs for the first and last names -->
   <div class="row mb-4">
     <div class="col">

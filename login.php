@@ -26,7 +26,7 @@
 
 </style>
     <form>
-        <h1>Swift Go</h1>
+        <h1>Swift Go</h1><br/>
         <!-- Email input -->
         <div class="form-outline mb-4">
           <input type="email" id="form1Example1" class="form-control" />
