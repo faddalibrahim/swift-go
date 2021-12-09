@@ -7,10 +7,9 @@
 		private $user = USERNAME;
 		private $password = PASSWORD;
 		private $name = DB_NAME;
-		private $conn;
+		private $conn = null;
 		
 		public function connect(){
-			$this->conn = null;
 
 			try{
 				$this->conn = new PDO("mysql:host=$this->host;dbname=$this->name;charset=utf8",$this->user,$this->password);
