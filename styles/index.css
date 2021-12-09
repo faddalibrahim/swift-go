@@ -11,6 +11,32 @@
     0px 2px 5px rgba(51, 51, 51, 0.12); */
   --header-box-shadow: 0 4px 10px rgb(0 0 0 / 8%);
   --app-theme: #923d41;
+  --app-gray: #a1a1a1;
+}
+
+.form-outline .form-control:focus ~ .form-notch .form-notch-leading {
+  border-top: 0.125rem solid var(--app-theme);
+  border-bottom: 0.125rem solid var(--app-theme);
+  border-left: 0.125rem solid var(--app-theme);
+}
+.form-outline .form-control:focus ~ .form-notch .form-notch-middle {
+  border-bottom: 0.125rem solid;
+  border-color: var(--app-theme);
+}
+
+.form-outline .form-control:focus ~ .form-notch .form-notch-trailing {
+  border-color: currentcolor currentcolor currentcolor var(--app-theme);
+  border-bottom: 0.125rem solid var(--app-theme);
+  border-right: 0.125rem solid var(--app-theme);
+  border-top: 0.125rem solid var(--app-theme);
+}
+
+.form-outline .form-control:focus ~ .form-label {
+  color: var(--app-theme);
+}
+
+button {
+  background-color: var(--app-theme) !important;
 }
 
 body {
@@ -19,23 +45,7 @@ body {
   overflow: hidden;
   display: flex;
   flex-flow: column;
-  /* align-items: space-between; */
   font-family: "Google Sans" !important;
-}
-
-header {
-  padding: 1rem;
-  box-shadow: var(--header-box-shadow);
-}
-
-main {
-  flex-grow: 1;
-  display: flex;
-  overflow: hidden;
-}
-
-img {
-  width: 120%;
 }
 
 /* Small (sm) devices (landscape phones, 567px and up) */
