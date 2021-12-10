@@ -10,14 +10,6 @@ session_start();
 
 
     $all = $bookings->fetchAll();
-
-
-
-    // if($bookings){
-    //     print_r($bookings->fetch());
-    // }else{
-    //     print("nasssss");
-    // }
 ?>
 
 <!DOCTYPE html>
