@@ -19,12 +19,24 @@
 
            if($password == $admin_data['password']){
                session_start();
-               $_SESSION['user'] = $admin_data['name'];
+               $_SESSION['admin'] = $admin_data['name'];
                $_SESSION['email'] = $admin_data['email'];
                header("location: dashboard.php");
            }
 
         //    return "invalid email or passsword";
+        }
+
+        public function getAllUsers(){
+            if(!$this->connect()){
+                return;
+            }
+
+			$sql = "SELECT * from student";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->execute();
+
+			return $stmt->rowCount();
         }
 
         public function getBookings(){

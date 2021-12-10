@@ -1,8 +1,17 @@
 <?php
+session_start();
+    if(!isset($_SESSION['admin'])){
+        header("location: login.php");
+    }
+    
     require __DIR__ . "/../controller/admin_controller.php";
     $bookings = getBookings();
+    $users_count = getAllUsers();
 
-    echo $bookings->rowCount();
+
+    $all = $bookings->fetchAll();
+
+
 
     // if($bookings){
     //     print_r($bookings->fetch());
@@ -46,12 +55,32 @@ body{
     font-family: "Google Sans";
 }
 
+th{
+    color: #923D41;
+    font-size: 1.3rem;
+}
+
 .sidebar{
     background-color: #923D41 !important;
     padding: 1rem;
     height: 100vh;
     width: 20vw;
     color: white;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.sidebar a{
+    padding: 1rem;
+    background-color: salmon;
+    color: white;
+    width: 100%;
+    display: inline-block;
+}
+
+.sidebar a:hover{
+    background-color: #823D40;
 }
 
 .content{
@@ -76,9 +105,12 @@ body{
 </style>
 <body>
     <div class="sidebar">
-        <center>
-            <h1>Admin</h1>
-        </center>
+        <h3><?php echo $_SESSION['user'] ?? "Faddal Ibrahim" ?></h3>
+
+        <a href="logout.php">
+            logout
+        </a>
+
     </div>
     <div class="content">
     <div class="analytics row">
@@ -86,7 +118,7 @@ body{
             <div class="card-body">
                 <h5 class="card-title">Users</h5>
                 <h1 class="card-text">
-                200
+                <?php echo $users_count ?>
                 </h1>
             <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
@@ -95,7 +127,7 @@ body{
             <div class="card-body">
                 <h5 class="card-title">Total Bookings</h5>
                 <h1 class="card-text">
-                100
+                <?php echo $bookings->rowCount(); ?>
                 </h1>
             <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
@@ -103,9 +135,20 @@ body{
 
          <div class="card col-md-3" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Moving From Campus</h5>
+                <h5 class="card-title">
+                   Moving From Campus
+                </h5>
                 <h1 class="card-text">
-                   45
+                    <?php
+                        $num = 0;
+                        foreach($all as $row){
+                            if($row['moving'] == "from campus"){
+                                $num = $num + 1;
+                            }
+                        }
+
+                        echo $num;
+                    ?>
                 </h1>
             <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
@@ -115,7 +158,16 @@ body{
             <div class="card-body">
                 <h5 class="card-title">Moving To Campus</h5>
                 <h1 class="card-text">
-                 50
+                  <?php
+                        $num = 0;
+                        foreach($all as $row){
+                            if($row['moving'] == "to campus"){
+                                $num = $num + 1;
+                            }
+                        }
+
+                        echo $num;
+                    ?>
                 </h1>
             <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
@@ -124,6 +176,7 @@ body{
         
     </div>
 
+    <h1 style="margin-left: 1rem">Bookings</h1>
     <table class="table">
   <thead>
     <tr>
@@ -137,27 +190,15 @@ body{
     </tr>
   </thead>
   <tbody>
+    <?php foreach($all as $row):?>
     <tr>
-      <td>Random Name </td>
-      <td>Sit</td>
-      <td>Amet</td>
-      <td>Consectetur</td>
-      <td>Consectetur</td>
+      <td><?php echo $row['fullname'] ?></td>
+      <td><?php echo $row['email'] ?></td>
+      <td><?php echo $row['moving'] ?></td>
+      <td><?php echo $row['pickup'] ?></td>
+      <td><?php echo $row['payment'] ?></td>
     </tr>
-    <tr>
-      <td>Random Name</td>
-      <td>Adipisicing</td>
-      <td>Elit</td>
-      <td>Sint</td>
-      <td>Sint</td>
-    </tr>
-    <tr>
-      <td>Random Name</td>
-      <td>Hic</td>
-      <td>Fugiat</td>
-      <td>Temporibus</td>
-      <td>Temporibus</td>
-    </tr>
+    <?php endforeach;?>
   </tbody>
 </table>
 

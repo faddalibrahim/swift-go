@@ -13,6 +13,11 @@ function getBookings(){
     return $admin->getBookings();
 }
 
+function getAllUsers(){
+    $admin = new Admin();
+    return $admin->getAllUsers();
+}
+
 function register(){
     $admin = new Admin();
     $admin->register($email, $password);
