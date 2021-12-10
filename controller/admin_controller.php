@@ -1,10 +1,11 @@
 <?php
 
-require __DIR__."../model/admin.model.php";
+require __DIR__."/../model/admin.model.php";
 
 function login($email,$password){
     $admin = new Admin();
-    $admin->login($email, $password);
+    return $admin->login($email, $password);
+
 }
 
 function register(){
