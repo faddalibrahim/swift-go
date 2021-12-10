@@ -20,7 +20,7 @@
            if($password == $admin_data['password']){
                session_start();
                $_SESSION['admin'] = $admin_data['name'];
-               $_SESSION['email'] = $admin_data['email'];
+               $_SESSION['admin_email'] = $admin_data['email'];
                header("location: dashboard.php");
            }
 

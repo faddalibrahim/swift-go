@@ -75,7 +75,7 @@
            if(password_verify($password,$student_data['password'])){
                session_start();
                $_SESSION['user'] = $student_data['firstname']." ".$student_data['lastname'];
-               $_SESSION['email'] = $student_data['email'];
+               $_SESSION['admin_email'] = $student_data['email'];
                header("location: booking.php");
            }
 
