@@ -5,25 +5,23 @@
         header("location: login.php");
     }
 
-    // if user books
-    if(isset($_POST['book'])){
-        require_once __DIR__ . "/controller/student_controller.php";
-        book($_POST['fullname'],$_POST['email'],$_POST['pickup'],$_POST['payment'],$_POST['moving']);
-    }
+    // // if user books
+    // if(isset($_POST['book'])){
+    //     require_once __DIR__ . "/controller/student_controller.php";
+    //     book($_POST['fullname'],$_POST['email'],$_POST['pickup'],$_POST['payment'],$_POST['moving']);
+    // }
     
     //fetching user data to check if he is booked : returns a boolean
-    require_once __DIR__ . "/controller/student_controller.php";
+    require __DIR__ . "/controller/student_controller.php";
     $user_booking = checkUserBooking($_SESSION['email']);
 
-    //cancel or update
-    if(isset($_POST['cancel'])){
-        cancelBooking($_SESSION['email']);
-        $user_booking = null;
+     if(isset($_POST['update'])){
+        // require __DIR__ . "/controller/student_controller.php";
+        $results = updateBooking($_POST['fullname'],$_POST['email'],$_POST['pickup'],$_POST['payment'],$_POST['moving']);
+        print_r($results);
+        header("location: booking.php");
     }
 
-    if(isset($_POST['update'])){
-        header("location: update-booking.php");
-    }
 ?>
 
 <?php include 'templates/header.template.php';  ?>
@@ -112,11 +110,11 @@
 
             </div>
        </nav>
-       <?php if(!$user_booking): ?>
+       <?php if($user_booking): ?>
             <div class="form-container">
-                <h1>Booking</h1><br/>
+                <h1>Update Booking</h1><br/>
                 <div class="form-outline mb-4">
-                    <input type="text" id="from" class="form-control" list="pickup-points" name="pickup" required/>
+                    <input type="text" id="from" class="form-control" list="pickup-points" name="pickup" required value="<?php echo $user_booking['pickup'] ?>"/>
                     <label class="form-label" for="from">Pick me at</label>
                     <datalist id="pickup-points">
                         <option value="Kwabenya">
@@ -125,7 +123,7 @@
                     </datalist>
                 </div>
                 <div class="form-outline mb-4">
-                    <input type="text" id="from" class="form-control" list="payment-method" name="payment" required/>
+                    <input type="text" id="from" class="form-control" list="payment-method" name="payment" required value="<?php echo $user_booking['payment'] ?>"/>
                     <label class="form-label" for="from">I will pay via</label>
                     <datalist id="payment-method">
                         <option value="Mobile Money">
@@ -148,6 +146,7 @@
                         id="from-campus"
                         value="from campus"
                         required
+                        <?php echo($user_booking['moving'] === "from campus" ? "checked" : "") ?>
                     />
                     <label class="form-check-label" for="from-campus"> From Campus </label>
                 </div>
@@ -160,24 +159,16 @@
                         id="to-campus"
                         value="to campus"
                         required
+                        <?php echo($user_booking['moving'] === "to campus" ? "checked" : "") ?>
                     />
                     <label class="form-check-label" for="to-campus"> To Campus </label>
                 </div>
                 <br/>
                 <!-- Submit button -->
-                <button type="submit" name="book" class="btn btn-primary btn-block">book</button>
+                <button type="submit" name="update" class="btn btn-primary btn-block">update booking</button>
             </div>
         <?php else:?>
-            <div class="cancel-booking-container">
-                <div>
-                    <span>You are...</span><br/>
-                    Moving <strong style="color: #923D41"><?php echo $user_booking['moving']?></strong><br/>
-                    Picked at <strong style="color: #923D41"><?php echo $user_booking['pickup']?></strong><br/>
-                    Paying with <strong style="color: #923D41"><?php echo $user_booking['payment']?></strong>
-                </div>
-                <button type="submit" name="cancel" class="btn btn-primary btn-block">cancel </button>
-                <button type="submit" name="update" class="btn btn-primary btn-block">update</button>
-            </div>
+            <div>...</div>
         <?php endif;?>
     </form>
     <!-- MDB -->
