@@ -1,3 +1,16 @@
+<?php
+    require __DIR__ . "/../controller/admin_controller.php";
+    $bookings = getBookings();
+
+    echo $bookings->rowCount();
+
+    // if($bookings){
+    //     print_r($bookings->fetch());
+    // }else{
+    //     print("nasssss");
+    // }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +55,7 @@ body{
 }
 
 .content{
-    background-color: #f1f1f1;
+    background-color: #fdfdfd;
     flex-grow: 1
 }
 
@@ -69,6 +82,15 @@ body{
     </div>
     <div class="content">
     <div class="analytics row">
+         <div class="card col-md-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Users</h5>
+                <h1 class="card-text">
+                200
+                </h1>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
         <div class="card col-md-3" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Total Bookings</h5>
@@ -99,79 +121,41 @@ body{
             </div>
         </div>
 
-         <div class="card col-md-3" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">
-                With supporting text below as a natural lead-in to additional content.
-                </p>
-            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-        </div>
+        
     </div>
 
     <table class="table">
   <thead>
     <tr>
       <th scope="col">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
-        </div>
+        Name
       </th>
-      <th scope="col">Lorem</th>
-      <th scope="col">Ipsum</th>
-      <th scope="col">Dolor</th>
+      <th scope="col">Email</th>
+      <th scope="col">Moving</th>
+      <th scope="col">Pickup</th>
+      <th scope="col">Payment Method</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
-        </div>
-      </th>
+      <td>Random Name </td>
       <td>Sit</td>
       <td>Amet</td>
       <td>Consectetur</td>
+      <td>Consectetur</td>
     </tr>
     <tr>
-      <th scope="row">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
-        </div>
-      </th>
+      <td>Random Name</td>
       <td>Adipisicing</td>
       <td>Elit</td>
       <td>Sint</td>
+      <td>Sint</td>
     </tr>
     <tr>
-      <th scope="row">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckDefault"
-          />
-        </div>
-      </th>
+      <td>Random Name</td>
       <td>Hic</td>
       <td>Fugiat</td>
+      <td>Temporibus</td>
       <td>Temporibus</td>
     </tr>
   </tbody>

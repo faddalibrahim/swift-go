@@ -8,6 +8,11 @@ function login($email,$password){
 
 }
 
+function getBookings(){
+    $admin = new Admin();
+    return $admin->getBookings();
+}
+
 function register(){
     $admin = new Admin();
     $admin->register($email, $password);

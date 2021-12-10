@@ -27,6 +27,18 @@
         //    return "invalid email or passsword";
         }
 
+        public function getBookings(){
+            if(!$this->connect()){
+                return;
+            }
+
+			$sql = "SELECT * from book";
+			$stmt = $this->conn->prepare($sql);
+			$stmt->execute();
+
+			return $stmt;
+        }
+
 
         private function getDataFromDB($email){
             if(!$this->connect()){
